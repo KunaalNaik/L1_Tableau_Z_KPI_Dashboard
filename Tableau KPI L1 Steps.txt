@@ -1,0 +1,44 @@
+1/ Create Sales CY Column
+{ FIXED : SUM(IF  YEAR([Order Date]) = {MAX(YEAR([Order Date]))}
+THEN Sales 
+END)
+}
+
+2/ Create Sales PY Column
+{ FIXED : SUM(IF  YEAR([Order Date]) = {MAX(YEAR([Order Date])-1)}
+THEN Sales 
+END)
+}
+
+3/ Calculate % Change for Sales
+(SUM([Sales CY]) - SUM([Sales PY]))
+/
+SUM([Sales PY])
+
+Change Format : +0.0%; -0.0%
+
+4/ Measure Values to Details and Measure Names should show up in Filter Automatically
+
+5/ Drag Order Date to Columns - Change to month Numerical
+
+5/ Create Last 12 Months Column
+DATETRUNC('month', [Order Date])
+>= 
+DATEADD('month', -11 , {MAX(DATETRUNC('month', [Order Date]))} )
+
+#Check by adding to colour shelf
+
+6/ Add Last 12 Month to Filter Area
+
+7/ Add Sales to Rows Area - change colour to Black
+
+8/ Modify Label to Check "show mark label" (Change to Min Max and also Field to Month)
+
+9/ Add only sales to Label and rest to Tool Tip 
+
+10/ Change Sheet Name to Add KPI(size 28) and Change Percentage(size 14) (append vs. PY)
+
+11/ Add to Dashboard and remove Rulers and lines, hide Headers
+
+12 Row header - "Uncheck Zero" for sparklines
+ 
